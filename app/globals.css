@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  --bg-primary: #fbfaf8;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f4f2ee;
+  
+  --border-hairline: #e6e3dc;
+  --border-strong: #cfcbc2;
+  
+  /* WCAG AA certified contrast against #fbfaf8 and #ffffff */
+  --text-primary: #171615;
+  --text-secondary: #4a4642;
+  --text-tertiary: #615c56;
+  
+  --accent: #b83818;
+  --accent-hover: #9c2e12;
+  --accent-subtle: #fdf2ef;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0e0e10;
+  --bg-surface: #151518;
+  --bg-subtle: #1c1c20;
+  
+  --border-hairline: #27272c;
+  --border-strong: #3b3b42;
+  
+  /* WCAG AA certified contrast against #0e0e10 and #151518 */
+  --text-primary: #f4f3f1;
+  --text-secondary: #b8b3ab;
+  --text-tertiary: #9c978f;
+  
+  --accent: #e45833;
+  --accent-hover: #f06a47;
+  --accent-subtle: #2b1712;
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-subtle: var(--bg-subtle);
+  
+  --color-border-hairline: var(--border-hairline);
+  --color-border-strong: var(--border-strong);
+  
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hairline border utility */
+.border-hairline {
+  border-color: var(--border-hairline);
+}
+
+/* Custom scrollbar hiding utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Shimmer animation for skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-subtle) 25%,
+    var(--border-hairline) 37%,
+    var(--bg-subtle) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+  }
+}
